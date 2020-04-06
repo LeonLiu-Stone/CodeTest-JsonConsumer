@@ -14,19 +14,17 @@ namespace JsonConsumer.Api.Controllers {
 	/// but will show it during the interview 
 	/// </summary>
 	[ApiController]
-	[Produces("application/json")]
-	[ApiVersion("1.0")]
-	[Route("api/v{version:apiVersion}/[controller]")]
+	[Route("api/[controller]")]
 	public class RegistrationController : BaseController {
 
 		private readonly ILogger<RegistrationController> _logger;
 		private readonly IFetchService _fetchService;
-		private readonly IVewingService _vewingService;
+		private readonly IViewsService _vewingService;
 		private readonly IRenderService _renderService;
 
 		public RegistrationController(ILogger<RegistrationController> logger,
 			IFetchService fetchService,
-			IVewingService vewingService,
+			IViewsService vewingService,
 			IRenderService renderService) {
 			_logger = logger;
 			_fetchService = fetchService;

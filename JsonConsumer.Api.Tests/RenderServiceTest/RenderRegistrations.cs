@@ -19,7 +19,7 @@ namespace JsonConsumer.Api.Tests.RenderServiceTest {
 		public void WhenPrivateValidResults_CanRenderToExpectedFormat() {
 
 			//Arrange
-			var testViewData = FakeModels.ViewDataForRender;
+			var testViewData = FakeModels.CatsViewForRender;
 
 			var stubILogger = StubHelper.StubILogger<RenderService>();
 
@@ -29,8 +29,7 @@ namespace JsonConsumer.Api.Tests.RenderServiceTest {
 			var actual = testedService.RenderRegistrations(testViewData);
 
 			//Assert
-			//the output count is equal to the number of headings + the number of items under each heading
-			Assert.Equal(testViewData.Count + testViewData.SelectMany(x => x.Items).ToList().Count, actual.Count);
+			Assert.Contains("Female", actual);
 		}
 	}
 }

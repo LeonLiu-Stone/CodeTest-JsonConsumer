@@ -1,27 +1,25 @@
 ﻿using System.Linq;
-
 using Xunit;
 
 using JsonConsumer.Api.Services;
 using JsonConsumer.Lib.Models;
 
-namespace JsonConsumer.Api.Tests.VewingServiceTest {
+namespace JsonConsumer.Api.Tests.ViewingServiceTest {
 
-	public class ViewRegistrations {
+	public class CatsUnderOnwersGenderViewTest {
 
 		[Fact]
-		public void WhenPrivateValidRegistrations_CanReturnExceptedView() {
+		public void WhenPrivateValidRegistrations_CanReturnExceptedCatsView() {
 
 			//Arrange
 			var registrations = FakeModels.Registrations;
-			var viewType = ViewType.CatsUnderOnwersGender;
 
-			var stubILogger = StubHelper.StubILogger<VewingService>();
+			var stubILogger = StubHelper.StubILogger<CatsUnderOnwersGenderView>();
 
-			var testedService = new VewingService(stubILogger.Object);
+			var testedService = new CatsUnderOnwersGenderView(stubILogger.Object);
 
 			//Act
-			var actual = testedService.ViewRegistrations(registrations, viewType);
+			var actual = testedService.SortRegistrations(registrations);
 
 			//Assert
 			//the total items of actaul should be equal to the number of cats in the registration

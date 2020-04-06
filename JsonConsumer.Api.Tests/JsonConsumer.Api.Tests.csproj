@@ -23,7 +23,8 @@
     <Folder Include="RegistrationControllerTest\" />
     <Folder Include="FetchServiceTest\" />
     <Folder Include="RenderServiceTest\" />
-    <Folder Include="VewingServiceTest\" />
+    <Folder Include="ViewsServiceTest\" />
+    <Folder Include="ViewingServiceTest\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JsonConsumer.Lib\JsonConsumer.Lib.csproj" />
