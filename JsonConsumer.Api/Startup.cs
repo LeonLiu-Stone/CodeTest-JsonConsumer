@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 
 using JsonConsumer.Lib;
 using JsonConsumer.Api.Middleware;
+using JsonConsumer.Api.Services;
 
 namespace JsonConsumer.Api {
 
@@ -20,6 +21,7 @@ namespace JsonConsumer.Api {
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services) {
 			services.AddControllers();
+			SetDependencies(services, Configuration);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +47,11 @@ namespace JsonConsumer.Api {
 			services.Configure<JsonConsumerSettings>(configuration.GetSection("JsonConsumer"));
 			services.AddSingleton<IExceptionFactory, ExceptionFactory>();
 			services.AddSingleton<IRestApiService, RestApiService>();
+			services.AddSingleton<IFetchService, FetchService>();
+			services.AddSingleton<IRenderService, RenderService>();
+			services.AddSingleton<IViewingService, CatsUnderOnwersGenderView>();
+			services.AddSingleton<IViewingService, DogsUnderOnwersGenderView>();
+			services.AddSingleton<IViewsService, ViewsService>();
 		}
 	}
 }

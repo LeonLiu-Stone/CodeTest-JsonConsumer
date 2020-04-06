@@ -63,7 +63,6 @@ namespace JsonConsumer.Api.Tests.FetchServiceTest {
 
 			//Assert
 			Assert.False(actual.Any());
-			StubHelper.VerifyLog(stubILogger, LogLevel.Error, "Failed");
 		}
 	}
 }

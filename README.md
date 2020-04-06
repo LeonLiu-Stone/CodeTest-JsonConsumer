@@ -39,3 +39,23 @@ Notes
 - .Net Core 3.1
 - XUnit
 - Github
+
+## Code Structure
+
+### JsonConsumer.Api
+- Controllers
+  RegistrationController: a endpoint to return expected data
+- Middleware
+  Global exceptions handler
+- Services
+ DI services to process data source to the expected data format
+
+### JsonConsumer.Api.Tests
+xUnit
+
+- Test cases
+- Stub services 
+
+### JsonConsumer.Lib
+- Models
+- Few common helpers, as copied from preivious projects, so no unit tests for them

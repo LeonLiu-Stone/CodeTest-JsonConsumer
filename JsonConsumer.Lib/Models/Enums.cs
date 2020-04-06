@@ -17,5 +17,6 @@ namespace JsonConsumer.Lib.Models {
 
 	public enum ViewType {
 		CatsUnderOnwersGender = 1,
+		DogsUnderOnwersGender = 2
 	}
 }

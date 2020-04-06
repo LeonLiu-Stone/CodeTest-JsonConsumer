@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 
 using JsonConsumer.Lib;
 using JsonConsumer.Lib.Models;
+using System.Linq;
 
 namespace JsonConsumer.Api.Services {
 
@@ -35,7 +36,14 @@ namespace JsonConsumer.Api.Services {
 		}
 
 		public async Task<List<OwnerInfo>> GetRegistrations() {
-			throw new NotImplementedException();
+			try {
+				var registrations = await _restApiService.GetRequestAsync<List<OwnerInfo>>(_settings.JsonSourceUrl);
+				return registrations?.Any() ?? false ? registrations : new List<OwnerInfo>();
+			}
+			catch (Exception ex) {
+				_logger.LogError("Failed to get registrations from data source", ex);
+				return new List<OwnerInfo>();
+			}
 		}
 	}
 }

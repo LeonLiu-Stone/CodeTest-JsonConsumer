@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 using JsonConsumer.Lib.Models;
+using System.Linq;
+using System.Text;
 
 namespace JsonConsumer.Api.Services {
 
@@ -11,7 +12,7 @@ namespace JsonConsumer.Api.Services {
 	/// render registrations in expected format
 	/// </summary>
 	public interface IRenderService {
-		List<string> RenderRegistrations(List<ResultFormat> results);
+		string RenderRegistrations(List<ResultFormat> results);
 	}
 
 	public class RenderService: IRenderService {
@@ -22,8 +23,13 @@ namespace JsonConsumer.Api.Services {
 			_logger = logger;
 		}
 
-		public List<string> RenderRegistrations(List<ResultFormat> results) {
-			throw new NotImplementedException();
+		public string RenderRegistrations(List<ResultFormat> results) {
+			var renderResponse = new StringBuilder();
+			results.ForEach(x => {
+				renderResponse.AppendLine(x.Heading);
+				x.Items.ForEach(item => renderResponse.AppendLine($"  • {item}"));
+			});
+			return renderResponse.ToString();
 		}
 	}
 }

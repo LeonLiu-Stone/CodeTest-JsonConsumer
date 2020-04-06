@@ -6,6 +6,6 @@ namespace JsonConsumer.Api {
 	/// settings for this api
 	/// </summary>
 	public class JsonConsumerSettings {
-		public string JsonSource { get; set; }
+		public string JsonSourceUrl { get; set; }
 	}
 }

@@ -27,9 +27,24 @@ namespace JsonConsumer.Api.Tests {
 				})
 		};
 
-		public static List<ResultFormat> ViewDataForRender = new List<ResultFormat> {
-			new ResultFormat("Male", new List<string>{ "PetA", "PetB", "PetC" }),
-			new ResultFormat("Female", new List<string>{ "PetD", "PetE", "PetF" })
+		public static List<ResultFormat> CatsViewForRender = new List<ResultFormat> {
+			new ResultFormat("Male", new List<string>{ "CatA", "CatB", "CatC" }),
+			new ResultFormat("Female", new List<string>{ "CatD", "CatE", "CatF" })
 		};
+
+		public static List<ResultFormat> DogsViewForRender = new List<ResultFormat> {
+			new ResultFormat("Male", new List<string>{ "DogA", "DogB" }),
+			new ResultFormat("Female", new List<string>{ "DogC" })
+		};
+
+		public static string RenderingData = @"Male
+  * Garfield
+  * Tom
+  * Max
+  * Jim
+Female
+  * Garfield
+  * Tabby
+  * Simba";
 	}
 }

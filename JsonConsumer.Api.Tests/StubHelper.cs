@@ -17,7 +17,9 @@ namespace JsonConsumer.Api.Tests {
 
 		public static Mock<IRenderService> StubIRenderService => new Mock<IRenderService>();
 
-		public static Mock<IVewingService> StubIVewingService => new Mock<IVewingService>();
+		public static Mock<IViewsService> StubIVewingService => new Mock<IViewsService>();
+
+		public static Mock<IViewingService> StubIViewingService => new Mock<IViewingService>();
 
 		public static Mock<IRestApiService> StubIRestApiService => new Mock<IRestApiService>();
 

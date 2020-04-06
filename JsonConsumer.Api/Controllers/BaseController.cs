@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JsonConsumer.Api.Controllers {
 
@@ -9,8 +10,10 @@ namespace JsonConsumer.Api.Controllers {
 		}
 
 		protected IActionResult OkResponse(string response) {
-			return Content(response);
-	}
+			var returnResponse = Content(response);
+			returnResponse.StatusCode = (int)HttpStatusCode.OK;
+			return returnResponse;
+		}
 
 	protected IActionResult OkResponse<T>(T response) {
 			return Ok(response);
