@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using JsonConsumer.Lib;
+using JsonConsumer.Api.Middleware;
 
 namespace JsonConsumer.Api {
 
@@ -36,6 +37,8 @@ namespace JsonConsumer.Api {
 			app.UseEndpoints(endpoints => {
 				endpoints.MapControllers();
 			});
+
+			app.ConfigureCustomMiddleware();
 		}
 
 		public void SetDependencies(IServiceCollection services, IConfiguration configuration) {
