@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+
+using JsonConsumer.Api.Services;
+using JsonConsumer.Lib.Models;
 
 namespace JsonConsumer.Api.Controllers {
 
@@ -18,9 +20,18 @@ namespace JsonConsumer.Api.Controllers {
 	public class RegistrationController : BaseController {
 
 		private readonly ILogger<RegistrationController> _logger;
+		private readonly IFetchService _fetchService;
+		private readonly IVewingService _vewingService;
+		private readonly IRenderService _renderService;
 
-		public RegistrationController(ILogger<RegistrationController> logger) {
+		public RegistrationController(ILogger<RegistrationController> logger,
+			IFetchService fetchService,
+			IVewingService vewingService,
+			IRenderService renderService) {
 			_logger = logger;
+			_fetchService = fetchService;
+			_vewingService = vewingService;
+			_renderService = renderService;
 		}
 
 		/// <summary>
@@ -32,21 +43,15 @@ namespace JsonConsumer.Api.Controllers {
 		[HttpGet]
 		public async Task<IActionResult> GetAll() {
 
-			//TODO: actual business logical
-			return OkResponse();
-		}
+			var registrations = await _fetchService.GetRegistrations();
+			if (!(registrations?.Any() ?? false)) {
+				return NoContent();
+			}
 
-		/// <summary>
-		/// Get a registration info by a given owner name
-		/// </summary>
-		/// <returns>a registration info</returns>
-		/// <response code="200">returns a registration info</response>
-		/// <response code="204">no registration be found</response>
-		[HttpGet("Owner")]
-		public async Task<IActionResult> GetByOwner(string ownerName) {
+			var view = _vewingService.ViewRegistrations(registrations, ViewType.CatsUnderOnwersGender);
+			var returnData = _renderService.RenderRegistrations(view);
 
-			//TODO: actual business logical
-			return OkResponse();
+			return OkResponse(returnData);
 		}
 	}
 }

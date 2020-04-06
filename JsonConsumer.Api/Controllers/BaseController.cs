@@ -8,7 +8,11 @@ namespace JsonConsumer.Api.Controllers {
 			return Ok();
 		}
 
-		protected IActionResult OkResponse<T>(T response) {
+		protected IActionResult OkResponse(string response) {
+			return Content(response);
+	}
+
+	protected IActionResult OkResponse<T>(T response) {
 			return Ok(response);
 		}
 
