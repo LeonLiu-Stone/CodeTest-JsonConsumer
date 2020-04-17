@@ -1,6 +1,6 @@
 # CodeTest-JsonConsumer
 
-A code test for AGL
+A code test project for AGL
 
 # Test Description
 
